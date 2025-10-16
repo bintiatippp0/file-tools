@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileTools Pro - Kompresi & Konversi File</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-file-alt"></i>
+                <span>FileTools Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#compress" class="nav-link">Kompresi</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#convert" class="nav-link">Konversi</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">Tentang</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Tools yang Berguna untuk Anda</h1>
+            <p>Kompres dan konversi file dengan mudah, cepat, dan aman</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('compress')">
+                    <i class="fas fa-compress-alt"></i> Mulai Kompresi
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToSection('convert')">
+                    <i class="fas fa-exchange-alt"></i> Mulai Konversi
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="compress" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <i class="fas fa-compress-alt"></i> Kompresi File
+                </h2>
+                <p class="section-description">Kurangi ukuran file Anda tanpa mengurangi kualitas</p>
+                
+                <div class="tool-container">
+                    <div class="upload-area" id="compressUpload">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h3>Drag & Drop File Disini</h3>
+                            <p>atau <span class="upload-link">klik untuk memilih file</span></p>
+                            <input type="file" id="compressFileInput" multiple accept=".jpg,.jpeg,.png,.pdf,.zip,.mp4,.mov">
+                        </div>
+                    </div>
+                    
+                    <div class="compression-options">
+                        <h4>Opsi Kompresi</h4>
+                        <div class="option-group">
+                            <label>Kualitas:</label>
+                            <select id="compressionQuality">
+                                <option value="high">Tinggi (file lebih besar)</option>
+                                <option value="medium" selected>Sedang (seimbang)</option>
+                                <option value="low">Rendah (file lebih kecil)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="file-list" id="compressFileList"></div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="startCompress" disabled>
+                            <i class="fas fa-compress-alt"></i> Mulai Kompresi
+                        </button>
+                        <button class="btn btn-secondary" id="clearCompressFiles">
+                            <i class="fas fa-trash"></i> Bersihkan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="convert" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <i class="fas fa-exchange-alt"></i> Konversi File
+                </h2>
+                <p class="section-description">Ubah format file sesuai kebutuhan Anda</p>
+                
+                <div class="conversion-types">
+                    <div class="conversion-card" data-type="pdf">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>PDF Converter</h3>
+                        <p>PDF ke Word, Excel, PowerPoint, JPG</p>
+                    </div>
+                    <div class="conversion-card" data-type="image">
+                        <i class="fas fa-image"></i>
+                        <h3>Image Converter</h3>
+                        <p>JPG, PNG, WEBP, BMP konversi</p>
+                    </div>
+                    <div class="conversion-card" data-type="document">
+                        <i class="fas fa-file-word"></i>
+                        <h3>Document Converter</h3>
+                        <p>Word, Excel, PowerPoint konversi</p>
+                    </div>
+                    <div class="conversion-card" data-type="video">
+                        <i class="fas fa-video"></i>
+                        <h3>Video Converter</h3>
+                        <p>MP4, AVI, MOV, MKV konversi</p>
+                    </div>
+                </div>
+                
+                <div class="tool-container" id="convertTool" style="display: none;">
+                    <div class="conversion-header">
+                        <h4 id="convertTitle">Konversi File</h4>
+                        <button class="btn btn-secondary" id="backToTypes">
+                            <i class="fas fa-arrow-left"></i> Kembali
+                        </button>
+                    </div>
+                    
+                    <div class="upload-area" id="convertUpload">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h3>Drag & Drop File Disini</h3>
+                            <p>atau <span class="upload-link">klik untuk memilih file</span></p>
+                            <input type="file" id="convertFileInput" multiple>
+                        </div>
+                    </div>
+                    
+                    <div class="conversion-settings">
+                        <div class="option-group">
+                            <label>Konversi Dari:</label>
+                            <select id="fromFormat">
+                                <option value="">Pilih format asal</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label>Konversi Ke:</label>
+                            <select id="toFormat">
+                                <option value="">Pilih format tujuan</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="file-list" id="convertFileList"></div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="startConvert" disabled>
+                            <i class="fas fa-exchange-alt"></i> Mulai Konversi
+                        </button>
+                        <button class="btn btn-secondary" id="clearConvertFiles">
+                            <i class="fas fa-trash"></i> Bersihkan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">Tentang FileTools Pro</h2>
+                <div class="about-content">
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Aman & Privat</h3>
+                            <p>Semua proses dilakukan di browser Anda. File tidak diunggah ke server.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-rocket"></i>
+                            <h3>Cepat & Efisien</h3>
+                            <p>Proses kompresi dan konversi dilakukan dengan teknologi modern.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>Responsive</h3>
+                            <p>Bekerja sempurna di desktop, tablet, dan smartphone.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-gem"></i>
+                            <h3>Gratis</h3>
+                            <p>Semua fitur tersedia gratis tanpa batasan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FileTools Pro</h3>
+                    <p>Tools terbaik untuk kompresi dan konversi file online.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Fitur</h3>
+                    <ul>
+                        <li>Kompresi File</li>
+                        <li>Konversi PDF</li>
+                        <li>Konversi Image</li>
+                        <li>Konversi Document</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48d8a828ba4828d8881908b8b8897ca94968b">[email&#160;protected]</a></li>
+                        <li><i class="fas fa-phone"></i> +62 xxx xxxx xxxx</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FileTools Pro. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Progress Modal -->
+    <div id="progressModal" class="modal">
+        <div class="modal-content">
+            <h3 id="progressTitle">Memproses File...</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p id="progressText">0%</p>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" id="cancelProcess">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <h3 id="resultTitle">Proses Selesai</h3>
+            <div id="resultContent"></div>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="downloadAll">Download Semua</button>
+                <button class="btn btn-secondary" id="closeResult">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+</body>
+</html>
